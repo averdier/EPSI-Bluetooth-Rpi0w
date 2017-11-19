@@ -2,7 +2,7 @@
 
 import json
 import sys
-from paho.mqtt.client as mqtt
+import paho.mqtt.client as mqtt
 from app.Bluetooth import BluetoothScanner
 
 
