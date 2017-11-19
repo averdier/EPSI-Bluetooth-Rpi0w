@@ -31,7 +31,9 @@ if __name__ == '__main__':
 
         while True:
             devices = scanner.get_devices_from_inquiry_with_rssi()
-            client.publish(mqtt_topic, device_id + ":{0}".format(json.dumps(devices)))
+
+            if len(devices) > 0:
+                client.publish(mqtt_topic, device_id + ":{0}".format(json.dumps(devices)))
             time.sleep(5)
 
 
