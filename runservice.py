@@ -2,9 +2,9 @@
 
 import json
 import sys
+import time
 import paho.mqtt.client as mqtt
 from app.Bluetooth import BluetoothScanner
-
 
 mqtt_server = ''
 mqtt_port = 1883
@@ -13,6 +13,7 @@ mqtt_topic = ''
 mqtt_username = ''
 mqtt_password = ''
 device_id = ''
+
 
 def on_connect(client, userdata, flags, rc):
     """
@@ -50,13 +51,10 @@ if __name__ == '__main__':
 
         while True:
             devices = scanner.get_devices_from_inquiry_with_rssi()
-            print(json.dumps(devices, indent=4))
-            client.publish(mqtt_topic, 'new data')
+            client.publish(mqtt_topic, device_id + ":{0}".format(json.dumps(devices)))
+            time.sleep(5)
 
 
     except Exception as ex:
         print(ex)
         sys.exit(1)
-
-
-
