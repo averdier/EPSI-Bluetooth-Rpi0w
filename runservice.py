@@ -58,10 +58,17 @@ if __name__ == '__main__':
         mqtt.publish('sensor/' + mqtt_account['username'] + '/from_device', 'started')
 
         while True:
+            t0 = time.time()
             devices = scanner.get_devices_from_inquiry_with_rssi()
+            t1 = time.time()
 
             if len(devices) > 0:
-                mqtt.publish('sensor/' + mqtt_account['username'] + '/from_device', '{0}'.format(json.dumps(devices)))
+                payload = {
+                    'start_timestamp' : t0,
+                    'end_timestamp': t1,
+                    'devices': devices
+                }
+                mqtt.publish('sensor/' + mqtt_account['username'] + '/from_device', '{0}'.format(json.dumps(payload)))
             time.sleep(5)
 
     except Exception as ex:
