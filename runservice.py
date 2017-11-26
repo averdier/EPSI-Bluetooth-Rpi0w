@@ -68,7 +68,7 @@ if __name__ == '__main__':
                     'end_timestamp': t1,
                     'devices': [{'mac': d[0], 'rssi': d[1]} for d in devices]
                 }
-                mqtt.publish(('sensor/' + mqtt_account['username'] + '/from_device', '{0}'.format(json.dumps(payload)))
+                mqtt.publish('sensor/' + mqtt_account['username'] + '/from_device', '{0}'.format(json.dumps(payload)))
             time.sleep(5)
 
     except Exception as ex:
