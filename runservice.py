@@ -56,7 +56,7 @@ if __name__ == '__main__':
             scanner.set_inquiry_mode(1)
 
         mqtt.publish('sensor/' + mqtt_account['username'] + '/from_device', 'started')
-
+        last_publish = time.time()
         while True:
             t0 = time.time()
             devices = scanner.get_devices_from_inquiry_with_rssi()
@@ -68,7 +68,16 @@ if __name__ == '__main__':
                     'end_timestamp': t1,
                     'devices': [{'mac': d[0], 'rssi': d[1]} for d in devices]
                 }
+
+                if time.time() - last_publish > mqtt_keep_alive -10:
+                    mqtt.connect(
+                        mqtt_account['server_address'],
+                        mqtt_port,
+                        mqtt_keep_alive
+                    )
+
                 mqtt.publish('sensor/' + mqtt_account['username'] + '/from_device', '{0}'.format(json.dumps(payload)))
+                last_publish = time.time()
                 print('datas sent')
             time.sleep(5)
 
