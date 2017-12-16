@@ -6,6 +6,7 @@ import time
 import paho.mqtt.client as ns_client
 from app.Bluetooth import BluetoothScanner
 from resources_api.iotresources import IOTResourcesAPI
+from iot.rest import IOTApi
 
 
 uuid = 'rpi0w_01'
