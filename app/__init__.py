@@ -24,11 +24,12 @@ class App:
         if rc != 0:
             raise Exception('Unable to connect to mqtt service')
 
+        print('MQTT connected')
         self._scanner.init_bluetooth()
         if self._scanner.get_inquiry_mode() != 1:
             self._scanner.set_inquiry_mode(1)
-
         self._scanner_started = True
+        print('Bluetooth scanner started')
 
     def on_message(self, userdata, msg):
         pass
@@ -54,7 +55,7 @@ class App:
         self._mqtt.connect(
             self._device_config['mqtt_account']['server'],
             self._device_config['mqtt_account']['port'],
-            self._device_config['account']['keep_alive']
+            self._device_config['mqtt_account']['keep_alive']
         )
 
     def stop(self):
