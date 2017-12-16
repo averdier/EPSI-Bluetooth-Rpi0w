@@ -71,6 +71,7 @@ class App:
 
             if len(devices) > 0:
                 payload = {
+                    'id': self._device_config['id'],
                     'start_timestamp': t0,
                     'end_timestamp': t1,
                     'devices': [{'mac': d[0], 'rssi': d[1]} for d in devices]
