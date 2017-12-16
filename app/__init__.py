@@ -76,4 +76,5 @@ class App:
                 }
 
                 self._mqtt.publish(self._device_config['mqtt_account']['device_topic'], json.dumps(payload))
+                print('datas sent')
 
