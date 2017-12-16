@@ -5,7 +5,7 @@ class Config:
     """
     Base configuration
     """
-    DEVICE_ID = 'sensor_01'
+    DEVICE_ID = 'sensor_1'
     KEY = 'xWocdVJp1FL9GfNC'
     SERVER = 'http://93.118.34.190/public/iot/api'
     BLUETOOTH_DEVICE_ID = 0
