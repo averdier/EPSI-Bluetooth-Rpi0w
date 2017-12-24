@@ -5,9 +5,9 @@ class Config:
     """
     Base configuration
     """
-    DEVICE_ID = 'sensor_1'
-    KEY = 'xWocdVJp1FL9GfNC'
-    SERVER = 'http://vps475171.ovh.net/public/iot/api'
+    DEVICE_ID = ''
+    KEY = ''
+    SERVER = ''
     BLUETOOTH_DEVICE_ID = 0
 
 
